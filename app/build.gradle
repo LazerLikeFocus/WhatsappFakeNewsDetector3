@@ -13,7 +13,6 @@ android {
         versionName "1.0"
         ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
 
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         //python
@@ -35,10 +34,21 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            //dl4j
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //tensorflow
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    //dl4j
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -53,4 +63,17 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //tensorflow
+    implementation 'org.tensorflow:tensorflow-lite:+'
+
+    //dl4j
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-nn', version: '1.0.0-beta7'
+    implementation group: 'org.deeplearning4j', name: 'deeplearning4j-modelimport', version: '1.0.0-beta7'
+
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.5'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.4'
+
+
+
 }

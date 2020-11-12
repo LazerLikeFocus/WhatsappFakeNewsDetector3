@@ -16,6 +16,12 @@ buildscript {
         //python
         classpath "com.chaquo.python:gradle:8.0.1"
     }
+
+    //dl4j
+    configurations.all {
+        resolutionStrategy.force 'junit:junit:4.12'
+        resolutionStrategy.force 'net.sf.proguard:proguard-gradle:5.3.2'
+    }
 }
 
 allprojects {
